@@ -1,0 +1,24 @@
+.dataContainer {
+  /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
+  display: flex;
+  flex-direction: column;
+  margin: 1em auto;
+}
+
+@media screen and (min-width: 600px) {
+  .dataContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 0.8em;
+  }
+}
+
+
+@media screen and (min-width: 1150px) {
+  .dataContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 1.1em;
+  }
+}
