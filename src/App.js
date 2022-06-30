@@ -9,13 +9,14 @@ let PageSize = 10;
 export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const url = `http://localhost:8080/api/productos/?limit=${PageSize}&page=${currentPage}`;
   
-  const [data, setData] = useState([]); 
+  
+  const [data, setData] = useState(null); 
   const [isBusy, setBusy] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
+    const url = `http://localhost:8080/api/productos/?limit=${PageSize}&page=${currentPage}`;
     fetch(url)
       .then((response) => {
         if (response.ok) {          
@@ -29,15 +30,15 @@ export default function App() {
         setBusy(false);
       } )
       .catch((error) => setError(error.message));
-  }, []);
-
-
-  const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    console.log(data)
-    return data["data"].slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
+
+
+  // const currentTableData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   console.log(data)
+  //   return data.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage, data]);
 
   return <div> 
     {!isBusy && !error? 
@@ -54,9 +55,9 @@ export default function App() {
             </tr>
           </thead>
           <tbody>
-            {currentTableData.map(item => {
+            {data?.data?.map(item => {
               return (
-                <tr>
+                <tr key={item.id_sku}>
                   <td>{item.id_sku}</td>
                   <td>{item.sku}</td>
                   <td>{item.title_to_store}</td>
@@ -64,7 +65,7 @@ export default function App() {
                   <td>{item.meli_category}</td>
                 </tr>
               );
-            })}
+            }) || null}
           </tbody>
         </table>
         <Pagination
