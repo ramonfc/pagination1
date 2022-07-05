@@ -18,8 +18,18 @@
       margin: 1em;
       padding: 0.5em 1em;
       font-size: 1.2em;
-      border: none;
+      border: 1px solid gray;
+      border-radius: 5px;
       background-color: transparent;
+    }
+
+    button:hover {
+      background-color: rgb(190, 189, 189);
+    }
+
+    button:active {
+      box-shadow: 1px 1px rgb(105, 105, 105);
+      transform: translateX(4px);
     }
 
 
@@ -43,3 +53,10 @@
     color: #777;
   }
 
+.eliminar {
+  border: 2px solid red;
+}
+
+.smart-watch {
+  border: 2px solid yellow;
+}

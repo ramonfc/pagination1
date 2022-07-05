@@ -63,7 +63,7 @@ const Pagination = props => {
         );
       })}
       {/*  Right Navigation arrow */}
-      <li
+      <li 
         className='pagination-item'
           disabled= {currentPage === lastPage}
         onClick={onNext}

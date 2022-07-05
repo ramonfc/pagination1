@@ -74,7 +74,9 @@ export default function App() {
             {data?.data?.map(item => {
               console.log("first")
               return (
-                <Post data={item} />
+                <Post 
+                key= {item.id_sku} 
+                data={item} />
               )
 
             }) || null}
